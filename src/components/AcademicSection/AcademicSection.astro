@@ -1,5 +1,6 @@
 ---
 import TrainingCard from "./TrainingCard.astro";
+import StudyCard from "./StudyCard.astro";
 import dicodingLogo from "../../assets/dicoding.jpg";
 import bsaLogo from "../../assets/binary-studio-academy.png";
 
@@ -17,19 +18,40 @@ const trainings = [
     logo: bsaLogo,
   },
 ];
+
+const studies = [
+  {
+    title: "-",
+    institution: "SMP Al-Azhar Mandiri Palu",
+    year: "2016-2019",
+  },
+  {
+    title: "Electrical Engineering",
+    institution: "SMKN 1 Balikpapan",
+    year: "2019-2022",
+  },
+  {
+    title: "Informatic Engineering",
+    institution: "UPN Veteran Jawa Timur",
+    year: "2022-Now",
+  },
+];
 ---
 
 <main class="h-screen">
   <h1 class="title-section">Academics</h1>
   <div class="text-text-light mt-20">
-    <h1 class="font-bold text-2xl mb-5 indent-10">Training</h1>
-    <div class="grid grid-cols-3 gap-4 justify-items-center">
-      <!-- list training cards -->
-      {trainings.map((training) => <TrainingCard {...training} />)}
+    <div class="flex flex-col items-center gap-4 justify-center">
+      <h1 class="font-bold text-2xl mb-5 w-full">Training</h1>
+      <div class="grid grid-cols-3 gap-4 justify-items-center">
+        {trainings.map((training) => <TrainingCard {...training} />)}
+      </div>
     </div>
-    <h1 class="font-bold text-2xl mb-5 mt-10 indent-10">Study</h1>
-    <div>
-      <!-- list study cards -->
+    <div class="flex flex-col items-center gap-4 justify-center">
+      <h1 class="font-bold text-2xl mb-5 mt-10 w-2/3">Study</h1>
+      <div class="flex justify-center gap-10">
+        {studies.map((study) => <StudyCard {...study} />)}
+      </div>
     </div>
   </div>
 </main>
