@@ -2,9 +2,9 @@
 const { institution, title, year } = Astro.props;
 ---
 
-<main class="flex items-center gap-4">
+<main class="flex items-center gap-4 w-auto lg:w-full">
   <div class="h-8 w-8 bg-dark-component rounded-full"></div>
-  <div class="flex flex-col gap-3">
+  <div class="flex flex-col gap-3 w-full">
     <h1 class="text-xl font-semibold">{institution}</h1>
     <h3>{title}</h3>
     <span class="bg-dark-component text-center">{year}</span>
