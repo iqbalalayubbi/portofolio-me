@@ -1,0 +1,32 @@
+---
+import CompetitionCard from "./CompetitionCard.astro";
+
+const competition = [
+  {
+    title: "Airofest Coding Challenge",
+    description:
+      "Organized by the UNAIR Robotics and Artificial Intelligence Engineering Student Association with a focus on competitions in the field of robotics and programming",
+    icon: "ph:code",
+  },
+  {
+    title: "Veteran Competitive Programming",
+    description:
+      "Creating a website with the theme 'Daily Use of Technology after Endemic COVID-19' which was held as a series of FKBM-IK events (Festival of the Large Family of Computer Science Students)",
+    icon: "streamline:web",
+  },
+  {
+    title: "Game dev competititon for tax education",
+    description:
+      "Creating educational games with a tax theme is organized by the Directorate of Counseling, Services and Public Relations of the Directorate General of Taxes",
+    icon: "noto:video-game",
+  },
+];
+---
+
+<main class="h-screen">
+  <h1 class="title-section">Competition</h1>
+  <div class="flex gap-10 mt-20 justify-center">
+    <!-- list competition card -->
+    {competition.map((item) => <CompetitionCard {...item} />)}
+  </div>
+</main>

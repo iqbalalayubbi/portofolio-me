@@ -1,0 +1,17 @@
+---
+import Icon from "astro-iconify";
+const { icon, title, description } = Astro.props;
+---
+
+<main
+  class="text-text-light flex flex-col items-center gap-4 bg-dark-component p-4 rounded-lg w-1/4"
+>
+  <div class="flex flex-col items-center gap-4">
+    <Icon name={icon} size="36" />
+    <h1 class="tetx-2xl font-semibold text-center">{title}</h1>
+  </div>
+  <hr />
+  <p class="text-disable-text-dark text-center">
+    {description}
+  </p>
+</main>
