@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+const { title, logo } = Astro.props;
+---
+
+<div
+  class="flex flex-col justify-between px-6 py-6 text-text-light bg-dark-component rounded-md gap-10 w-3/4 h-full"
+>
+  <h1 class="text-xl font-semibold">{title}</h1>
+  <div class="flex justify-between items-center">
+    <Image src={logo} alt={title} />
+    <a>view</a>
+  </div>
+</div>
