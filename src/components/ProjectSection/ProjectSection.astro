@@ -1,0 +1,52 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import project1 from "../../assets/project-1.png";
+import project2 from "../../assets/project-2.png";
+import project3 from "../../assets/project-3.png";
+import project4 from "../../assets/project-4.png";
+
+const projects = [
+  {
+    imgUrl: project1,
+    projectName: "AiyCashier",
+    description:
+      "Point of Sale system to manage your business. Good reporting that can show best item of your market",
+    techStacks: [
+      "Vue",
+      "Express",
+      "Firebase",
+      "JWT",
+      "Daisy UI",
+      "TailwindCSS",
+    ],
+  },
+  {
+    imgUrl: project2,
+    projectName: "Easy Task",
+    description:
+      "Text block application that can easy to manage your task and note. Support by gemini AI that can help you to write faster and efficient",
+    techStacks: ["Vue", "Vite"],
+  },
+  {
+    imgUrl: project3,
+    projectName: "BeBalance",
+    description:
+      "Life can feel like a juggling act, and many of us struggle to keep all  the balls in the air. We saw the need for an app that offers real  support",
+    techStacks: ["Vue", "Vite"],
+  },
+  {
+    imgUrl: project4,
+    projectName: "EZCOURSE",
+    description:
+      "Enhance your skills, connect with fellow tech enthusiat and access valuable resources. Start your learning from community to community",
+    techStacks: ["Vue", "Vite"],
+  },
+];
+---
+
+<main class="h-screen">
+  <h1 class="title-section">Projects</h1>
+  <div class="grid grid-cols-2 gap-10 mt-20">
+    {projects.map((project) => <ProjectCard {...project} />)}
+  </div>
+</main>
