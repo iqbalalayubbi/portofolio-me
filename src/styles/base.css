@@ -20,4 +20,7 @@
   .text-link-disabled {
     @apply text-disable-text-dark cursor-pointer hover:text-text-light;
   }
+  .title-section {
+    @apply text-text-light font-bold text-3xl text-center after:content-[''] after:block after:w-1/5 after:h-3 after:bg-primary after:mx-auto after:-mt-4 after:blur-xl;
+  }
 }
