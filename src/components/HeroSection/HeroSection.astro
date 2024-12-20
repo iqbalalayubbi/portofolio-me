@@ -4,7 +4,9 @@ import Photo from "../../assets/foto-iqbal.png";
 import { Image } from "astro:assets";
 ---
 
-<div class="text-text-light flex items-center justify-center gap-40 h-screen">
+<div
+  class="text-text-light flex flex-col gap-10 h-full items-center justify-center sm:gap-40 sm:h-screen sm:flex-row"
+>
   <LeftSide />
   <Image src={Photo} alt="" />
 </div>
