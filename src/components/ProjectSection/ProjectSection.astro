@@ -25,28 +25,47 @@ const projects = [
     projectName: "Easy Task",
     description:
       "Text block application that can easy to manage your task and note. Support by gemini AI that can help you to write faster and efficient",
-    techStacks: ["Vue", "Vite"],
+    techStacks: ["PHP", "Tailwind", "Editor JS", "Gemini AI", "MySQL"],
   },
   {
     imgUrl: project3,
     projectName: "BeBalance",
     description:
       "Life can feel like a juggling act, and many of us struggle to keep all  the balls in the air. We saw the need for an app that offers real  support",
-    techStacks: ["Vue", "Vite"],
+    techStacks: [
+      "Fastify",
+      "React",
+      "Knex",
+      "Open AI",
+      "Zod",
+      "PostgreSQL",
+      "Typescript",
+    ],
   },
   {
     imgUrl: project4,
     projectName: "EZCOURSE",
     description:
       "Enhance your skills, connect with fellow tech enthusiat and access valuable resources. Start your learning from community to community",
-    techStacks: ["Vue", "Vite"],
+    techStacks: [
+      "React",
+      "Antd",
+      "Axios",
+      "Typescript",
+      "Express",
+      "JWT",
+      "Zustand",
+      "MySQL",
+      "Prisma",
+      "Tanstack Query",
+    ],
   },
 ];
 ---
 
-<main class="h-screen">
+<main class="h-auto sm:h-screen mt-20 md:mt-10 lg:mt-20 xl:mt-0">
   <h1 class="title-section">Projects</h1>
-  <div class="grid grid-cols-2 gap-10 mt-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20">
     {projects.map((project) => <ProjectCard {...project} />)}
   </div>
 </main>

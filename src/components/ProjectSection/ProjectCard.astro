@@ -4,15 +4,15 @@ const { imgUrl, projectName, description, techStacks } = Astro.props;
 ---
 
 <main
-  class="flex gap-10 bg-dark-component p-5 rounded-md shadow-md hover:bg-dark-mode cursor-pointer transition-all duration-300"
+  class="flex flex-col xl:flex-row gap-10 bg-dark-component p-5 xl:p-10 rounded-md shadow-md hover:bg-dark-mode cursor-pointer transition-all duration-300"
 >
-  <Image src={imgUrl} alt={`project ${projectName}`} />
+  <Image src={imgUrl} alt={`project ${projectName}`} class="w-full" />
   <div class="text-text-light">
     <h1 class="text-2xl font-bold">{projectName}</h1>
     <p class="text-justify">{description}</p>
     <h2 class="text-xl font-bold mt-5">Tech Stack</h2>
-    <ul class="flex gap-2 flex-wrap">
-      {techStacks.map((tech: string) => <li>{tech}</li>)}
+    <ul class="flex gap-x-2 flex-wrap">
+      {techStacks.map((tech: string) => <li>{tech} -</li>)}
     </ul>
   </div>
 </main>
