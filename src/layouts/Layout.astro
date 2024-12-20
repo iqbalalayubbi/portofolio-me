@@ -1,0 +1,18 @@
+---
+import Navbar from "../components/Navbar/Navbar.astro";
+import "../styles/base.css";
+import { Icon } from "astro-iconify";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iqbal Al Ayyubi</title>
+  </head>
+  <body class="bg-dark-mode py-5">
+    <Navbar />
+    <slot />
+  </body>
+</html>

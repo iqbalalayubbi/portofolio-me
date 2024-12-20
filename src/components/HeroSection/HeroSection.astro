@@ -1,0 +1,10 @@
+---
+import LeftSide from "./LeftSide.astro";
+import Photo from "../../assets/foto-iqbal.png";
+import { Image } from "astro:assets";
+---
+
+<div class="text-text-light flex items-center justify-between px-20">
+  <LeftSide />
+  <Image src={Photo} alt="" />
+</div>
