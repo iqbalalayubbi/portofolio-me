@@ -15,7 +15,7 @@
     @apply bg-primary hover:bg-[#5c4173] text-white font-semibold py-2 px-6 rounded-md shadow-lg transition duration-300 ease-in-out active:scale-95;
   }
   .gradient-text {
-    @apply bg-gradient-to-r from-[#735290] to-[#472a4f] inline-block text-transparent bg-clip-text;
+    @apply bg-gradient-to-r from-[#735290] to-[#CEB2E7]/50 inline-block text-transparent bg-clip-text;
   }
   .text-link-disabled {
     @apply text-disable-text-dark cursor-pointer hover:text-text-light;

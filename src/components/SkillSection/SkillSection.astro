@@ -1,0 +1,62 @@
+---
+import SkillCard from "./SkillCard.astro";
+
+const skills = [
+  {
+    title: "Tools",
+    skills: [
+      { icon: "devicon:figma", text: "Figma" },
+      { icon: "mdi:github", text: "Github" },
+      { icon: "devicon:vscode", text: "VS Code" },
+    ],
+  },
+  {
+    title: "Frontend",
+    skills: [
+      { icon: "devicon:react", text: "React" },
+      { icon: "logos:vue", text: "Vue" },
+      { icon: "logos:tailwindcss-icon", text: "Tailwind" },
+    ],
+  },
+  {
+    title: "Databse",
+    skills: [
+      { icon: "devicon:mongodb", text: "MongoDB" },
+      { icon: "skill-icons:mysql-dark", text: "Mysql" },
+      { icon: "devicon:postgresql", text: "PostgreSQL" },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      { icon: "simple-icons:express", text: "Express JS" },
+      { icon: "logos:fastify-icon", text: "Fastify" },
+      { icon: "logos:hapi", text: "Hapi" },
+    ],
+  },
+];
+---
+
+<main class="h-screen">
+  <h1 class="text-text-light font-bold text-3xl text-center">Skills</h1>
+  <div class="mt-20 grid grid-cols-2 gap-y-10">
+    {
+      skills.map((skill, i) => {
+        return (
+          <div
+            class={`${i % 2 !== 0 ? "items-end" : "items-start"} gap-4 flex flex-col`}
+          >
+            <h2 class="text-text-light font-semibold text-xl">{skill.title}</h2>
+            <div class="flex gap-8">
+              {skill.skills.map((skill) => {
+                return (
+                  <SkillCard icon={skill.icon} size={48} text={skill.text} />
+                );
+              })}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</main>

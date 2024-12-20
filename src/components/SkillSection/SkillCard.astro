@@ -1,0 +1,13 @@
+---
+import Icon from "astro-iconify";
+const { icon, size, text } = Astro.props;
+---
+
+<div
+  class="text-text-light font-semibold flex flex-col gap-4 items-center bg-dark-component py-6 px-6 w-40 rounded-lg shadow-lg hover:bg-dark-mode transition-all duration-300 cursor-pointer"
+>
+  <Icon name={icon} size={size} />
+  <span>{text}</span>
+  <!-- logo -->
+  <!-- text of logo -->
+</div>
