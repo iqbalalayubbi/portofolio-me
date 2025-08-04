@@ -4,15 +4,24 @@ import Icon from "astro-iconify";
 
 <div class="text-text-light flex flex-col gap-8 mt-20 md:mt-0">
   <div class="flex flex-col gap-2 sm:gap-5">
-    <h3 class="font-medium text-2xl sm:text-4xl">Hello I'm</h3>
+    <div class="flex gap-3 items-center">
+      <h3 class="font-medium text-2xl sm:text-4xl">Hello I'm</h3>
+      <h1
+        class="font-bold text-4xl sm:text-6xl md:text-3xl lg:text-4xl 2xl:text-5xl gradient-text"
+      >
+        Iqbal
+      </h1>
+    </div>
+    <!-- type writer -->
     <h1
-      class="font-bold text-4xl sm:text-6xl md:text-4xl lg:text-6xl gradient-text"
+      class="font-bold text-4xl sm:text-6xl md:text-4xl lg:text-5xl 2xl:text-6xl gradient-text"
     >
-      IQBAL AL-AYYUBI
+      <span id="typewriter" class="inline-block w-[550px] 2xl:w-[700px]"
+        >Fullstack Developer</span
+      >
     </h1>
     <h5 class="text-sm sm:text-xl">
-      Informatic student at UPN Vetrean Jawa Timur. <br /> Let me introduce my self
-      from this portofolio
+      Creative, Enthusiast, Curios <br /> with 1+ Years experience in Tech World
     </h5>
   </div>
   <div class="flex items-center gap-4">
@@ -37,3 +46,101 @@ import Icon from "astro-iconify";
     </div>
   </div>
 </div>
+
+<style>
+  .cursor {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  function initTypewriter() {
+    const typewriterElement = document.getElementById("typewriter");
+
+    if (!typewriterElement) {
+      console.log("Typewriter element not found");
+      return;
+    }
+
+    const texts = [
+      "Fullstack Developer",
+      "Frontend Developer",
+      "Backend Developer",
+    ];
+    let currentTextIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+
+    // Cari teks terpanjang untuk menentukan lebar minimum
+    const longestText = texts.reduce((a, b) => (a.length > b.length ? a : b));
+
+    function typeWriter() {
+      if (!typewriterElement) return;
+
+      const currentText = texts[currentTextIndex];
+
+      if (isDeleting) {
+        // Menghapus karakter
+        const displayText = currentText.substring(0, currentCharIndex - 1);
+        const remainingLength = longestText.length - displayText.length;
+        const invisibleChars = "&nbsp;".repeat(remainingLength);
+
+        typewriterElement.innerHTML =
+          displayText +
+          `<span class="cursor">|</span>` +
+          `<span style="opacity: 0;">${invisibleChars}</span>`;
+        currentCharIndex--;
+
+        if (currentCharIndex === 0) {
+          isDeleting = false;
+          currentTextIndex = (currentTextIndex + 1) % texts.length;
+          setTimeout(typeWriter, 500); // Pause sebelum mulai mengetik
+          return;
+        }
+      } else {
+        // Menambah karakter
+        const displayText = currentText.substring(0, currentCharIndex + 1);
+        const remainingLength = longestText.length - displayText.length;
+        const invisibleChars = "&nbsp;".repeat(remainingLength);
+
+        typewriterElement.innerHTML =
+          displayText +
+          `<span class="cursor">|</span>` +
+          `<span style="opacity: 0;">${invisibleChars}</span>`;
+        currentCharIndex++;
+
+        if (currentCharIndex === currentText.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, 2000); // Pause sebelum mulai menghapus
+          return;
+        }
+      }
+
+      // Kecepatan mengetik dan menghapus
+      const speed = isDeleting ? 50 : 50;
+      setTimeout(typeWriter, speed);
+    }
+
+    // Mulai efek typewriter
+    console.log("Starting typewriter effect");
+    typeWriter();
+  }
+
+  // Jalankan ketika DOM sudah siap
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTypewriter);
+  } else {
+    initTypewriter();
+  }
+</script>

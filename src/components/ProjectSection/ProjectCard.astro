@@ -1,6 +1,8 @@
 ---
+import Icon from "astro-iconify";
 import { Image } from "astro:assets";
-const { imgUrl, projectName, description, techStacks } = Astro.props;
+const { imgUrl, projectName, description, techStacks, github, demo } =
+  Astro.props;
 ---
 
 <main
@@ -12,7 +14,36 @@ const { imgUrl, projectName, description, techStacks } = Astro.props;
     <p class="text-justify">{description}</p>
     <h2 class="text-xl font-bold mt-5">Tech Stack</h2>
     <ul class="flex gap-x-2 flex-wrap">
-      {techStacks.map((tech: string) => <li>{tech} -</li>)}
+      {
+        techStacks.map((tech: string, index: number) => (
+          <li>
+            {tech}
+            {index < techStacks.length - 1 ? " -" : ""}
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="flex mt-5 gap-3">
+      <li>
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-disable-text-dark"
+        >
+          <Icon name="ri:github-fill" size="24" />
+        </a>
+      </li>
+      <li>
+        <a
+          href={demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-disable-text-dark"
+        >
+          <Icon name="tdesign:play-demo-filled" size="24" />
+        </a>
+      </li>
     </ul>
   </div>
 </main>
