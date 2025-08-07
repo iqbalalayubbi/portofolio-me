@@ -6,26 +6,40 @@ const { imgUrl, projectName, description, techStacks, github, demo } =
 ---
 
 <main
-  class="flex flex-col gap-10 bg-dark-component p-5 xl:p-10 rounded-md shadow-md hover:bg-dark-mode cursor-pointer transition-all duration-300"
+  class="grid grid-cols-1 md:grid-rows-[2fr_1.5fr] bg-dark-component p-5 xl:p-10 rounded-md shadow-md hover:bg-dark-mode cursor-pointer transition-all duration-300"
 >
-  <!-- thumbnail -->
-  <div class="aspect-[1414/1000] w-full rounded-md overflow-hidden">
-    <Image
-      src={imgUrl}
-      alt={`project ${projectName}`}
-      class="object-contain w-full h-full"
-    />
-  </div>
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <!-- thumbnail -->
+    <div class="aspect-[1414/1000] w-full rounded-md overflow-hidden">
+      <Image
+        src={imgUrl}
+        alt={`project ${projectName}`}
+        class="object-contain w-full h-full"
+      />
+    </div>
 
-  <!-- description -->
-  <div class="text-text-light flex-1">
-    <h1 class="text-2xl font-bold">{projectName}</h1>
-    <p class="text-justify">{description}</p>
-    <h2 class="text-xl font-bold mt-5">Tech Stack</h2>
+    <!-- description -->
+    <div class="text-text-light flex-1">
+      <h1
+        class="text-2xl font-bold text-text-light bg-primary px-3 mb-3 inline-block md:block"
+      >
+        {projectName}
+      </h1>
+      <p class="text-justify">{description}</p>
+    </div>
+  </section>
+
+  <!-- tech stack -->
+  <section>
+    <h2
+      class="text-xl font-bold mt-5 text-text-light bg-primary px-3 my-2 inline-block"
+    >
+      Tech Stack
+    </h2>
     <ul class="flex gap-x-2 flex-wrap">
       {
         techStacks.map((tech: string, index: number) => (
-          <li>
+          <li class="text-text-light">
             {tech}
             {index < techStacks.length - 1 ? " -" : ""}
           </li>
@@ -38,7 +52,7 @@ const { imgUrl, projectName, description, techStacks, github, demo } =
           href={github}
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-disable-text-dark"
+          class="hover:text-disable-text-dark text-text-light"
         >
           <Icon name="ri:github-fill" size="24" />
         </a>
@@ -48,11 +62,11 @@ const { imgUrl, projectName, description, techStacks, github, demo } =
           href={demo}
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-disable-text-dark"
+          class="hover:text-disable-text-dark text-text-light"
         >
           <Icon name="tdesign:play-demo-filled" size="24" />
         </a>
       </li>
     </ul>
-  </div>
+  </section>
 </main>
