@@ -6,10 +6,19 @@ const { imgUrl, projectName, description, techStacks, github, demo } =
 ---
 
 <main
-  class="flex flex-col xl:flex-row gap-10 bg-dark-component p-5 xl:p-10 rounded-md shadow-md hover:bg-dark-mode cursor-pointer transition-all duration-300"
+  class="flex flex-col gap-10 bg-dark-component p-5 xl:p-10 rounded-md shadow-md hover:bg-dark-mode cursor-pointer transition-all duration-300"
 >
-  <Image src={imgUrl} alt={`project ${projectName}`} class="w-full" />
-  <div class="text-text-light">
+  <!-- thumbnail -->
+  <div class="aspect-[1414/1000] w-full rounded-md overflow-hidden">
+    <Image
+      src={imgUrl}
+      alt={`project ${projectName}`}
+      class="object-contain w-full h-full"
+    />
+  </div>
+
+  <!-- description -->
+  <div class="text-text-light flex-1">
     <h1 class="text-2xl font-bold">{projectName}</h1>
     <p class="text-justify">{description}</p>
     <h2 class="text-xl font-bold mt-5">Tech Stack</h2>

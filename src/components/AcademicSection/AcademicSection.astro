@@ -1,65 +1,85 @@
 ---
-import TrainingCard from "./TrainingCard.astro";
-import StudyCard from "./StudyCard.astro";
-import dicodingLogo from "../../assets/dicoding.jpg";
-import bsaLogo from "../../assets/binary-studio-academy.png";
+import TimelineCard from "./TimelineCard.astro";
 
-const trainings = [
-  {
-    title: "Belajar Membuat Front-End Web untuk Pemula",
-    logo: dicodingLogo,
-  },
-  {
-    title: "Belajar Membuat Aplikasi Back-End untuk Pemula",
-    logo: dicodingLogo,
-  },
-  {
-    title: "FullStack Javascript Developer",
-    logo: bsaLogo,
-  },
-];
+// import TrainingCard from "./TrainingCard.astro";
+// import StudyCard from "./StudyCard.astro";
+// import dicodingLogo from "../../assets/dicoding.jpg";
+// import bsaLogo from "../../assets/binary-studio-academy.png";
+
+// const trainings = [
+//   {
+//     title: "Belajar Membuat Front-End Web untuk Pemula",
+//     logo: dicodingLogo,
+//   },
+//   {
+//     title: "Belajar Membuat Aplikasi Back-End untuk Pemula",
+//     logo: dicodingLogo,
+//   },
+//   {
+//     title: "FullStack Javascript Developer",
+//     logo: bsaLogo,
+//   },
+// ];
+
+// const studies = [
+//   {
+//     title: "-",
+//     institution: "SMP Al-Azhar Mandiri Palu",
+//     year: "2016-2019",
+//   },
+//   {
+//     title: "Electrical Engineering",
+//     institution: "SMKN 1 Balikpapan",
+//     year: "2019-2022",
+//   },
+//   {
+//     title: "Informatic Engineering",
+//     institution: "UPN Veteran Jawa Timur",
+//     year: "2022-Now",
+//   },
+// ];
 
 const studies = [
   {
-    title: "-",
-    institution: "SMP Al-Azhar Mandiri Palu",
-    year: "2016-2019",
+    title: "SMP Al-Azhar Mandiri Palu",
+    label: "2016–2019",
+    desc: "",
   },
   {
-    title: "Electrical Engineering",
-    institution: "SMKN 1 Balikpapan",
-    year: "2019-2022",
+    title: "SMKN 1 Balikpapan",
+    label: "2019–2022",
+    desc: "Teknik Elektronika Industri",
   },
   {
-    title: "Informatic Engineering",
-    institution: "UPN Veteran Jawa Timur",
-    year: "2022-Now",
+    title: "UPN Veteran Jawa Timur",
+    label: "2022–Now",
+    desc: "Informatika",
+  },
+];
+
+const experiences = [
+  {
+    title: "FullStack Javascript Developer",
+    label: "Binary Studio Academy",
+    duration: 3,
+  },
+  {
+    title: "Frontend Developer",
+    label: "SchoolTech",
+    duration: 5,
+  },
+  {
+    title: "Web Developer",
+    label: "Xenopati",
+    duration: 6,
   },
 ];
 ---
 
-<main class="h-auto mt-20 lg:h-screen">
+<main class="mt-20">
   <h1 class="title-section">Academics</h1>
-  <div class="text-text-light mt-20">
-    <div class="flex flex-col items-center gap-4 justify-center">
-      <h1 class="font-bold text-2xl mb-5 w-full md:w-3/4 lg:w-full">
-        Training
-      </h1>
-      <div
-        class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 justify-items-center"
-      >
-        {trainings.map((training) => <TrainingCard {...training} />)}
-      </div>
-    </div>
-    <div class="flex flex-col items-center gap-4 justify-center">
-      <h1 class="font-bold text-2xl mb-5 mt-10 w-2/3 md:w-1/2 lg:w-full">
-        Study
-      </h1>
-      <div
-        class="flex flex-col lg:flex-row justify-center lg:justify-around gap-10 lg:w-full"
-      >
-        {studies.map((study) => <StudyCard {...study} />)}
-      </div>
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-20 my-20">
+    <TimelineCard data={studies} title="Study" position="left" />
+    <TimelineCard data={experiences} title="Experience" position="right" />
   </div>
 </main>

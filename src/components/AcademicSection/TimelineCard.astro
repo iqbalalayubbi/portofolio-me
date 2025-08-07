@@ -1,0 +1,46 @@
+---
+type itemType = {
+  title: string;
+  desc: string;
+  label: string;
+  duration: number;
+};
+
+const { data, title, position = "left" } = Astro.props;
+const isLeft = position === "left";
+---
+
+<section class="space-y-3">
+  <div class="flex flex-col items-center">
+    <h1 class="text-2xl text-text-light font-bold mb-5">{title}</h1>
+    <div
+      class={`relative ${isLeft ? "border-l-4 border-primary ml-6" : "border-r-4 border-primary mr-6"}`}
+    >
+      {
+        data.map((item: itemType) => (
+          <div class={`mb-12 relative ${isLeft ? "ml-4" : "mr-4 text-right"}`}>
+            <div
+              class={`absolute w-6 h-6 bg-primary border-4 border-[#323232] rounded-full ${isLeft ? "left-[-1.85rem]" : "right-[-1.85rem]"} top-0 flex items-center justify-center`}
+            >
+              <div class="w-2 h-2 bg-white rounded-full" />
+            </div>
+            {/* title */}
+            <h1 class="text-lg font-bold text-text-light">{item.title}</h1>
+            {/* desc */}
+            {item.desc && <p class="text-sm text-gray-300">{item.desc}</p>}
+            {/* label */}
+            <h3 class="mt-2 inline-block bg-primary text-text-light px-3 py-1 rounded text-sm font-medium">
+              {item.label}
+            </h3>
+            {/* duration */}
+            {item.duration && (
+              <h5 class="bg-white text-black text-xs rounded-full px-5 inline-block">
+                {item.duration + " month"}
+              </h5>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
