@@ -4,10 +4,13 @@ import Photo from "../../assets/foto-iqbal.png";
 import { Image } from "astro:assets";
 ---
 
-<div
-  class="text-text-light flex flex-col gap-10 h-full items-center justify-center lg:gap-20 md:h-screen md:flex-row relative overflow-hidden"
+<section
+  id="home"
+  class="text-text-light grid grid-cols-1 md:grid-cols-2 gap-10 h-full items-center justify-center lg:gap-20 md:h-screen"
 >
+  <!-- desc -->
   <LeftSide />
+
   <!-- image hero -->
-  <Image src={Photo} alt="" class="md:w-1/2 lg:w-[500px]" />
-</div>
+  <Image src={Photo} alt="avatar" class="w-full" />
+</section>

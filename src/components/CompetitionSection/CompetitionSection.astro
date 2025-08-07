@@ -23,7 +23,7 @@ const competition = [
 ];
 ---
 
-<main class="h-screen mt-40">
+<section id="competition" class="mt-40 pb-40">
   <h1 class="title-section">Competition</h1>
   <div
     class="flex flex-col sm:items-center md:items-stretch md:flex-row gap-10 mt-20 justify-center"
@@ -31,4 +31,4 @@ const competition = [
     <!-- list competition card -->
     {competition.map((item) => <CompetitionCard {...item} />)}
   </div>
-</main>
+</section>

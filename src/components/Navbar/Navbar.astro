@@ -1,9 +1,164 @@
-<nav class="flex items-center justify-center gap-4 text-text-light">
-  <span
-    class="text-text-light font-semibold cursor-pointer hover:text-text-light"
-    >Home</span
-  >
-  <span class="text-link-disabled">Skills</span>
-  <span class="text-link-disabled">Projects</span>
-  <span class="text-link-disabled">Academics</span>
+---
+import Icon from "astro-iconify";
+---
+
+<nav class="relative">
+  <!-- Desktop Navigation -->
+  <div class="hidden md:flex items-center justify-center gap-6 text-text-light">
+    <a
+      href="#home"
+      class="text-text-light font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
+    >
+      Home
+    </a>
+    <a
+      href="#skills"
+      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
+    >
+      Skills
+    </a>
+    <a
+      href="#projects"
+      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
+    >
+      Projects
+    </a>
+    <a
+      href="#academics"
+      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
+    >
+      Academics
+    </a>
+    <a
+      href="#competition"
+      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
+    >
+      Competition
+    </a>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="md:hidden bg-dark-mode rounded-lg">
+    <!-- Hamburger Button -->
+    <button
+      id="mobile-menu-button"
+      class="flex items-center justify-center w-10 h-10 text-text-light hover:text-primary transition-colors duration-300"
+      aria-label="Toggle menu"
+    >
+      <Icon name="heroicons:bars-3" size="24" id="hamburger-icon" />
+      <Icon name="heroicons:x-mark" size="24" id="close-icon" class="hidden" />
+    </button>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="absolute top-12 left-0 right-0 bg-dark-mode border p-4 hidden z-50"
+    >
+      <div class="flex flex-col gap-4 text-text-light">
+        <a
+          href="#home"
+          class="text-text-light font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+        >
+          Home
+        </a>
+        <a
+          href="#skills"
+          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+        >
+          Skills
+        </a>
+        <a
+          href="#projects"
+          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+        >
+          Projects
+        </a>
+        <a
+          href="#academics"
+          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+        >
+          Academics
+        </a>
+        <a
+          href="#competition"
+          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+        >
+          Competition
+        </a>
+      </div>
+    </div>
+  </div>
 </nav>
+
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  // Smooth scrolling function
+  function smoothScrollTo(target: string) {
+    const element = document.querySelector(target);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }
+
+  // Add smooth scrolling to all nav links
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const href = (e.target as HTMLAnchorElement).getAttribute("href");
+        if (href) {
+          smoothScrollTo(href);
+        }
+      });
+    });
+  });
+
+  if (mobileMenuButton && mobileMenu && hamburgerIcon && closeIcon) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.contains("hidden");
+
+      if (isHidden) {
+        // Show menu
+        mobileMenu.classList.remove("hidden");
+        hamburgerIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      } else {
+        // Hide menu
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node;
+      const isClickInsideNav =
+        mobileMenuButton.contains(target) || mobileMenu.contains(target);
+
+      if (!isClickInsideNav && !mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      }
+    });
+
+    // Close menu when clicking on a menu item (mobile)
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+    mobileNavLinks.forEach((item) => {
+      item.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      });
+    });
+  }
+</script>
