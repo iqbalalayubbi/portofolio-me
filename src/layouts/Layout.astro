@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/Navbar/Navbar.astro";
+import CustomCursor from "../components/CustomCursor/CustomCursor.astro";
 import "../styles/base.css";
 ---
 
@@ -11,6 +12,7 @@ import "../styles/base.css";
     <title>Iqbal Al Ayyubi</title>
   </head>
   <body class="bg-dark-mode py-5 px-5 sm:px-20 md:px-10 container mx-auto">
+    <CustomCursor />
     <Navbar />
     <slot />
   </body>

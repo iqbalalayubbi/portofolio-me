@@ -11,14 +11,24 @@
 }
 
 @layer components {
+  .btn-small {
+    @apply text-xs font-normal py-1.5 px-4;
+  }
   .btn-primary {
     @apply bg-primary hover:bg-[#5c4173] text-white font-semibold py-2 px-6 rounded-md shadow-lg transition duration-300 ease-in-out active:scale-95;
   }
   .gradient-text {
     @apply bg-gradient-to-r from-[#735290] to-[#CEB2E7]/50 inline-block text-transparent bg-clip-text;
   }
+
+  .text-link {
+    @apply cursor-pointer transition-colors duration-300;
+  }
+  .text-link-active {
+    @apply text-text-light font-semibold hover:text-primary;
+  }
   .text-link-disabled {
-    @apply text-disable-text-dark cursor-pointer hover:text-text-light;
+    @apply text-disable-text-dark hover:text-text-light font-light;
   }
   .title-section {
     @apply text-text-light font-bold text-3xl text-center after:content-[''] after:block after:w-1/5 after:h-3 after:bg-primary after:mx-auto after:-mt-4 after:blur-xl;

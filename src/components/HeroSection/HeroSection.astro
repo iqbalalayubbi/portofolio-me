@@ -1,16 +1,21 @@
 ---
 import LeftSide from "./LeftSide.astro";
-import Photo from "../../assets/foto-iqbal.png";
+import Photo from "../../assets/foto-iqbal-triangle.png";
 import { Image } from "astro:assets";
 ---
 
 <section
-  id="home"
-  class="text-text-light grid grid-cols-1 md:grid-cols-2 gap-10 h-full items-center justify-center lg:gap-20 md:h-screen"
+  class="text-text-light grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0 h-full items-center justify-center lg:items-start lg:h-screen lg:overflow-hidden mx-5 lg:mx-20"
 >
   <!-- desc -->
   <LeftSide />
 
   <!-- image hero -->
-  <Image src={Photo} alt="avatar" class="w-full" />
+  <Image src={Photo} alt="avatar" class="w-full lg:mt-32 lg:scale-125" />
+
+  <!-- blob glow background effect -->
+  <div
+    class="w-20 h-20 bg-primary absolute blur-3xl top-1/2 right-0 -z-10 opacity-40 md:opacity-60"
+  >
+  </div>
 </section>

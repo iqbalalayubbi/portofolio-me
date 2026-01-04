@@ -2,93 +2,74 @@
 import Icon from "astro-iconify";
 ---
 
-<nav class="relative">
-  <!-- Desktop Navigation -->
-  <div class="hidden md:flex items-center justify-center gap-6 text-text-light">
-    <a
-      href="#home"
-      class="text-text-light font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
-    >
-      Home
-    </a>
-    <a
-      href="#skills"
-      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
-    >
-      Skills
-    </a>
-    <a
-      href="#projects"
-      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
-    >
-      Projects
-    </a>
-    <a
-      href="#academics"
-      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
-    >
-      Academics
-    </a>
-    <a
-      href="#competition"
-      class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 nav-link"
-    >
-      Competition
-    </a>
-  </div>
-
-  <!-- Mobile Navigation -->
-  <div class="md:hidden bg-dark-mode rounded-lg">
-    <!-- Hamburger Button -->
-    <button
-      id="mobile-menu-button"
-      class="flex items-center justify-center w-10 h-10 text-text-light hover:text-primary transition-colors duration-300"
-      aria-label="Toggle menu"
-    >
-      <Icon name="heroicons:bars-3" size="24" id="hamburger-icon" />
-      <Icon name="heroicons:x-mark" size="24" id="close-icon" class="hidden" />
-    </button>
-
-    <!-- Mobile Menu -->
+<nav
+  class="fixed top-0 left-0 right-0 z-50 bg-dark-mode/80 backdrop-blur border-b border-dark-component"
+>
+  <div
+    class="max-w-5xl mx-auto flex items-center justify-center px-4 py-3 relative"
+  >
+    <!-- Desktop Navigation -->
     <div
-      id="mobile-menu"
-      class="absolute top-12 left-0 right-0 bg-dark-mode border p-4 hidden z-50"
+      class="hidden md:flex items-center justify-center gap-8 text-text-light"
     >
-      <div class="flex flex-col gap-4 text-text-light">
-        <a
-          href="#home"
-          class="text-text-light font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
-        >
-          Home
-        </a>
-        <a
-          href="#skills"
-          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
-        >
-          Skills
-        </a>
-        <a
-          href="#projects"
-          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
-        >
-          Projects
-        </a>
-        <a
-          href="#academics"
-          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
-        >
-          Academics
-        </a>
-        <a
-          href="#competition"
-          class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
-        >
-          Competition
-        </a>
+      <a href="#home" class="text-link text-link-active nav-link"> Me </a>
+      <a href="#skills" class="text-link text-link-disabled nav-link">
+        Skills
+      </a>
+      <a href="#projects" class="text-link text-link-disabled nav-link">
+        Projects
+      </a>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      class="md:hidden bg-dark-mode/90 rounded-lg border border-dark-component ml-auto"
+    >
+      <!-- Hamburger Button -->
+      <button
+        id="mobile-menu-button"
+        class="flex items-center justify-center w-10 h-10 text-text-light hover:text-primary transition-colors duration-300"
+        aria-label="Toggle menu"
+      >
+        <Icon name="heroicons:bars-3" size="24" id="hamburger-icon" />
+        <Icon
+          name="heroicons:x-mark"
+          size="24"
+          id="close-icon"
+          class="hidden"
+        />
+      </button>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="absolute top-12 right-0 bg-dark-mode border border-dark-component p-4 hidden z-50 min-w-[180px]"
+      >
+        <div class="flex flex-col gap-3 text-text-light">
+          <a
+            href="#home"
+            class="text-text-light font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+          >
+            Me
+          </a>
+          <a
+            href="#skills"
+            class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+          >
+            Skills
+          </a>
+          <a
+            href="#projects"
+            class="text-link-disabled font-semibold cursor-pointer hover:text-primary transition-colors duration-300 py-2 px-3 rounded hover:bg-dark-component nav-link mobile-nav-link"
+          >
+            Projects
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+<div class="h-16"></div>
 
 <script>
   const mobileMenuButton = document.getElementById("mobile-menu-button");
@@ -110,12 +91,70 @@ import Icon from "astro-iconify";
   // Add smooth scrolling to all nav links
   document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".nav-link");
+    const sectionToNav: Record<string, string | null> = {
+      home: "home",
+      skills: "skills",
+      projects: "projects",
+      academics: null, // setelah projects nonaktifkan menu
+      competition: null,
+    };
+    const sections = Object.keys(sectionToNav);
+
+    const setActiveLink = (id: string | null) => {
+      navLinks.forEach((link) => {
+        link.classList.remove("text-link-active");
+        link.classList.add("text-link-disabled");
+      });
+
+      if (!id) return;
+
+      const activeLinks = document.querySelectorAll(`.nav-link[href="#${id}"]`);
+      activeLinks.forEach((link) => {
+        link.classList.add("text-link-active");
+        link.classList.remove("text-link-disabled");
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+          .forEach((entry) => {
+            const navId = sectionToNav[entry.target.id];
+            setActiveLink(navId ?? null);
+          });
+      },
+      {
+        root: null,
+        threshold: 0.2,
+        rootMargin: "-64px 0px -50% 0px", // compensate fixed navbar height
+      }
+    );
+
+    sections.forEach((id) => {
+      const sectionEl = document.getElementById(id);
+      if (sectionEl) observer.observe(sectionEl);
+    });
+
+    // Fallback: ensure "Me" active when near top
+    const setHomeWhenTop = () => {
+      if (window.scrollY < 80) {
+        setActiveLink("home");
+      }
+    };
+    setHomeWhenTop();
+    window.addEventListener("scroll", setHomeWhenTop);
+
     navLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         const href = (e.target as HTMLAnchorElement).getAttribute("href");
         if (href) {
           smoothScrollTo(href);
+          const targetId = href.replace("#", "");
+          const navId = sectionToNav[targetId];
+          setActiveLink(navId ?? null);
         }
       });
     });
