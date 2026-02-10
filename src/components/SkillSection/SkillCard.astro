@@ -4,8 +4,11 @@ const { icon, text } = Astro.props;
 ---
 
 <div
-  class="text-text-light font-semibold flex flex-col justify-center gap-4 items-center bg-dark-component py-6 px-6 w-36 sm:w-40 md:w-32 lg:w-40 rounded-lg shadow-lg hover:bg-dark-mode transition-all duration-300 cursor-pointer"
+  class="group skill-card opacity-0 translate-y-10 text-text-light font-semibold flex flex-col justify-center gap-4 items-center bg-dark-component py-6 px-6 w-36 sm:w-40 md:w-32 lg:w-40 rounded-xl border border-white/5 shadow-lg transition-all duration-500 cursor-pointer hover:bg-dark-mode hover:scale-105 hover:-translate-y-2 hover:shadow-primary/20 hover:border-primary/50"
 >
-  <Icon name={icon} class="w-8 sm:w-14 md:w-10" />
+  <Icon
+    name={icon}
+    class="w-8 sm:w-14 md:w-10 transition-transform duration-500 group-hover:scale-110"
+  />
   <span class="text-center md:text-sm lg:text-lg">{text}</span>
 </div>

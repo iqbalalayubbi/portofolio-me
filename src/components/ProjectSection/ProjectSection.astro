@@ -1,9 +1,13 @@
 ---
 import ProjectCard from "./ProjectCard.astro";
+import Icon from "astro-iconify";
+import { Image } from "astro:assets";
 import project1 from "../../assets/project-1.png";
 import project2 from "../../assets/project-2.png";
 import project3 from "../../assets/project-3.png";
 import project4 from "../../assets/project-4.png";
+import project5 from "../../assets/project-5.png";
+import project6 from "../../assets/project-6.png";
 
 const projects = [
   {
@@ -61,12 +65,275 @@ const projects = [
     github: "https://github.com/iqbalalayubbi/programming-course.git",
     demo: "#",
   },
+  {
+    imgUrl: project5,
+    projectName: "AiyCashier",
+    description:
+      "Point of Sale system to manage your business. Good reporting that can show best item of your market",
+    techStacks: [
+      "Vue",
+      "Express",
+      "Firebase",
+      "JWT",
+    ],
+    github: "https://github.com/iqbalalayubbi/programming-course.git",
+    demo: "#",
+  },
+  {
+    imgUrl: project6,
+    projectName: "Easy Task",
+    description:
+      "Text block application that can easy to manage your task and note. Support by gemini AI that can help you to write faster and efficient",
+    techStacks: [
+      "PHP",
+      "Tailwind",
+      "Editor JS",
+      "Gemini AI",
+      "MySQL",
+    ],
+    github: "https://github.com/iqbalalayubbi/programming-course.git",
+    demo: "#",
+  },
 ];
 ---
 
-<section id="projects" class="h-auto mt-20 md:mt-10 lg:mt-20 xl:mt-0">
-  <h1 class="title-section">Projects</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20">
-    {projects.map((project) => <ProjectCard {...project} />)}
+<section id="projects" class="h-auto mt-20 md:mt-10">
+  <h1 class="title-section animate-fade-up">Projects</h1>
+  
+  <!-- Project Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-20 animate-fade-up">
+    {projects.map((project, index) => <ProjectCard {...project} index={index} />)}
+  </div>
+
+  <!-- Project Modal -->
+  <div
+    id="project-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300 opacity-0"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="relative w-full max-w-6xl mx-4 overflow-hidden rounded-xl bg-dark-component shadow-2xl border border-white/10">
+      
+      <!-- Close Button -->
+      <button
+        id="close-modal"
+        class="absolute top-4 right-4 z-20 p-2 text-gray-400 hover:text-white bg-black/50 rounded-full transition-colors"
+      >
+        <Icon name="mdi:close" size="24" />
+      </button>
+
+      <!-- Navigation Arrows -->
+      <button
+        id="prev-slide"
+        class="absolute left-4 top-1/2 z-20 -translate-y-1/2 p-3 text-white bg-black/50 hover:bg-primary rounded-full transition-all hidden md:block"
+      >
+        <Icon name="mdi:chevron-left" size="32" />
+      </button>
+      <button
+        id="next-slide"
+        class="absolute right-4 top-1/2 z-20 -translate-y-1/2 p-3 text-white bg-black/50 hover:bg-primary rounded-full transition-all hidden md:block"
+      >
+        <Icon name="mdi:chevron-right" size="32" />
+      </button>
+
+      <!-- Slides Container -->
+      <div id="modal-track" class="flex transition-transform duration-500 ease-out h-full">
+        {
+          projects.map((project) => (
+            <div class="w-full flex-shrink-0 p-6 md:p-10 max-h-[90vh] overflow-y-auto">
+              <div class="lg:grid flex flex-col lg:grid-cols-2 gap-3 sm:gap-8 items-center h-full">
+                <!-- Image -->
+                <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-black/20">
+                   <Image
+                      src={project.imgUrl}
+                      alt={`project ${project.projectName}`}
+                      class="object-cover w-full h-full"
+                    />
+                </div>
+
+                <!-- Content -->
+                <div class="flex flex-col space-y-6">
+                  <div>
+                    <h2 class="text-xl sm:text-3xl font-bold text-text-light mb-4 inline-block border-b-4 border-primary pb-1">
+                      {project.projectName}
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed text-sm sm:text-lg">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <!-- Tech Stack -->
+                  <div>
+                    <h3 class="text-xl font-semibold text-text-light mb-3">Tech Stacks</h3>
+                    <div class="flex flex-wrap gap-2">
+                       {project.techStacks.map((tech) => (
+                          <span class="px-3 py-1 bg-dark-mode border border-white/10 rounded-full text-sm text-gray-300 shadow-sm">
+                            {tech}
+                          </span>
+                       ))}
+                    </div>
+                  </div>
+
+                  <!-- Links -->
+                  <div class="flex gap-4 pt-4 border-t border-white/10">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 px-6 py-2 bg-dark-mode hover:bg-primary text-white rounded-lg transition-colors duration-300 border border-white/10"
+                    >
+                      <Icon name="ri:github-fill" size="20" />
+                      <span class="text-xs sm:text-base">GitHub</span>
+                    </a>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 px-6 py-2 bg-primary hover:bg-primary/80 text-white rounded-lg transition-colors duration-300 shadow-lg shadow-primary/20"
+                    >
+                      <Icon name="tdesign:play-demo-filled" size="20" />
+                      <span class="text-xs sm:text-base">Demo</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      
+      <!-- Dots Indicator -->
+      <div class="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {projects.map((_, i) => (
+          <button class="slide-dot w-2 h-2 rounded-full bg-white/30 transition-all hover:bg-primary data-[active]:bg-primary data-[active]:w-6" data-index={i}></button>
+        ))}
+      </div>
+
+    </div>
   </div>
 </section>
+
+<script>
+  // Script handles Modal Logic
+  const modal = document.getElementById("project-modal");
+  const track = document.getElementById("modal-track");
+  const closeBtn = document.getElementById("close-modal");
+  const prevBtn = document.getElementById("prev-slide");
+  const nextBtn = document.getElementById("next-slide");
+  const cards = document.querySelectorAll(".project-card");
+  const dots = document.querySelectorAll(".slide-dot");
+  
+  let currentIndex = 0;
+  let totalSlides = cards.length;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  // -- Functions --
+
+  function updateSlidePosition() {
+    if (!track) return;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update dots
+    dots.forEach((dot, idx) => {
+      if (idx === currentIndex) {
+        dot.setAttribute("data-active", "true");
+      } else {
+        dot.removeAttribute("data-active");
+      }
+    });
+  }
+
+  function openModal(index: string) {
+    if (!modal) return;
+    currentIndex = parseInt(index);
+    updateSlidePosition();
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    // Small delay to allow display:block to apply before opacity transition
+    requestAnimationFrame(() => {
+        modal.classList.remove("opacity-0");
+    });
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.add("opacity-0");
+    setTimeout(() => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }, 300); // Wait for transition
+    document.body.style.overflow = "";
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlidePosition();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlidePosition();
+  }
+
+  // -- Event Listeners --
+
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const index = card.getAttribute("data-index");
+      if (index !== null) openModal(index);
+    });
+  });
+
+  closeBtn?.addEventListener("click", closeModal);
+  
+  // Close on click outside
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Navigation
+  nextBtn?.addEventListener("click", nextSlide);
+  prevBtn?.addEventListener("click", prevSlide);
+  
+  // Dots navigation
+  dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+          const idx = dot.getAttribute('data-index');
+          if(idx !== null) {
+              currentIndex = parseInt(idx);
+              updateSlidePosition();
+          }
+      })
+  })
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (modal && !modal.classList.contains("hidden")) {
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    }
+  });
+
+  // Touch Swipe Support
+  track?.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  track?.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const threshold = 50; // min distance for swipe
+    if (touchEndX < touchStartX - threshold) {
+      nextSlide();
+    }
+    if (touchEndX > touchStartX + threshold) {
+      prevSlide();
+    }
+  }
+</script>

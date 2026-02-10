@@ -11,9 +11,70 @@ import "../styles/base.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Iqbal Al Ayyubi</title>
   </head>
-  <body class="bg-dark-mode py-5 px-5 sm:px-20 md:px-10 container mx-auto">
+  <body
+    class="bg-dark-mode py-5 px-5 sm:px-20 md:px-10 lg:px-0 container mx-auto"
+  >
     <CustomCursor />
     <Navbar />
     <slot />
+
+    <style is:global>
+      /* Scroll Animation Utilities */
+      .animate-fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+
+      .animate-fade-left {
+        opacity: 0;
+        transform: translateX(30px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+
+      .animate-fade-right {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+
+      /* Active State */
+      .is-visible {
+        opacity: 1;
+        transform: translate(0, 0);
+      }
+    </style>
+
+    <script>
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Select elements to animate
+      // We use a timeout to ensure all components are rendered
+      setTimeout(() => {
+        const elements = document.querySelectorAll(
+          ".animate-fade-up, .animate-fade-left, .animate-fade-right",
+        );
+        elements.forEach((el) => observer.observe(el));
+      }, 100);
+    </script>
   </body>
 </html>
